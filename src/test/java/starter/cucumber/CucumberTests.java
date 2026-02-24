@@ -9,8 +9,7 @@ import org.junit.platform.suite.api.*;
         key = "cucumber.plugin",
         value = "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm," +
                 "pretty," +
-                "html:target/cucumber-reports/cucumber.html,"
+                "html:target/cucumber-reports/cucumber.html"
 )
-@ConfigurationParameter(key = "cucumber.execution.strict", value = "true")
 public class CucumberTests {
 }

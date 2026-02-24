@@ -13,13 +13,12 @@
 
         <!-- Dependency Versions -->
         <playwright.version>1.55.0</playwright.version>
-        <cucumber.version>7.30.0</cucumber.version>
-        <junit.jupiter.version>6.0.0</junit.jupiter.version>
-        <junit.platform.suite.version>6.0.0</junit.platform.suite.version>
+        <cucumber.version>7.34.2</cucumber.version>
+        <junit.jupiter.version>6.0.3</junit.jupiter.version>
 
         <allure.version>2.30.0</allure.version>
         <aspectj.version>1.9.24</aspectj.version>
-        <assertj.version>3.26.3</assertj.version>
+        <assertj.version>3.27.7</assertj.version>
         <slf4j.simple.version>2.0.17</slf4j.simple.version>
 
         <!-- Maven Plugins -->
@@ -31,10 +30,19 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Existing allure-bom -->
             <dependency>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-bom</artifactId>
                 <version>${allure.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Force JUnit 6.0.3 across all transitive dependencies -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.jupiter.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -56,12 +64,6 @@
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit-platform-engine</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
@@ -69,13 +71,11 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite</artifactId>
-            <version>${junit.platform.suite.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- Fixes -->
@@ -83,25 +83,17 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-api</artifactId>
-            <version>${junit.platform.suite.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- Explicitly add launcher & engine if not pulled in -->
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
-            <version>${junit.platform.suite.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-engine</artifactId>
-            <version>${junit.platform.suite.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit5</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -140,8 +132,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.plugin.version}</version>
                 <configuration>
-                    <source>16</source>
-                    <target>16</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
             <plugin>

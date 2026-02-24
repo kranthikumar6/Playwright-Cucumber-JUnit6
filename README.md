@@ -7,14 +7,14 @@ A robust end-to-end test automation framework built with **Playwright**, **Cucum
 ## 🧰 Tech Stack
 
 | Tool | Version | Purpose |
-|---|---|---|
-| [Playwright](https://playwright.dev/java/) | 1.55.0 | Browser automation |
-| [Cucumber](https://cucumber.io/) | 7.30.0 | BDD feature testing |
-| JUnit Jupiter | 6.0.0 | Test runner |
-| Allure | 2.30.0 | Test reporting |
-| AssertJ | 3.26.3 | Fluent assertions |
-| AspectJ | 1.9.24 | AOP for Allure instrumentation |
-| SLF4J Simple | 2.0.17 | Logging |
+|---|---------|---|
+| [Playwright](https://playwright.dev/java/) | 1.55.0  | Browser automation |
+| [Cucumber](https://cucumber.io/) | 7.34.2  | BDD feature testing |
+| JUnit Jupiter | 6.0.3   | Test runner |
+| Allure | 2.30.0  | Test reporting |
+| AssertJ | 3.27.7  | Fluent assertions |
+| AspectJ | 1.9.24  | AOP for Allure instrumentation |
+| SLF4J Simple | 2.0.17  | Logging |
 
 ---
 
@@ -56,7 +56,7 @@ src/
 
 ## ⚙️ Prerequisites
 
-- Java 16+
+- Java 17+
 - Maven 3.6+
 - No separate browser installation required — Playwright manages browser binaries automatically
 
@@ -145,7 +145,6 @@ Tests are discovered and executed via the `CucumberTests` JUnit Suite:
 @IncludeEngines("cucumber")
 @SelectPackages("features")
 @ConfigurationParameter(key = "cucumber.plugin", value = "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm,pretty,html:target/cucumber-reports/cucumber.html")
-@ConfigurationParameter(key = "cucumber.execution.strict", value = "true")
 public class CucumberTests {}
 ```
 
