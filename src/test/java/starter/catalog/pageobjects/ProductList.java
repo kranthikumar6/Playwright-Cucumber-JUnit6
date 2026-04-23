@@ -1,5 +1,6 @@
 package starter.catalog.pageobjects;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import java.util.List;
 
@@ -11,13 +12,17 @@ public class ProductList {
         this.page = page;
     }
 
-
     public List<String> getProductNames() {
         return page.getByTestId("product-name").allInnerTexts();
     }
 
     public List<ProductSummary> getProductSummaries() {
-        return page.locator(".card").all()
+        Locator productCards = page.locator(".card:has([data-test='product-name'])");
+        int count = productCards.count();
+        if (count == 0) {
+            return List.of();
+        }
+        return productCards.all()
                 .stream()
                 .map(productCard -> {
                     String productName = productCard.getByTestId("product-name").textContent().strip();
